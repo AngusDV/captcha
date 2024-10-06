@@ -19,7 +19,7 @@
     ],
     "require": {
         "illuminate/support": ">=8.0",
-        "ext-gd": "*
+        "ext-gd": "*"
     },
     "extra": {
         "laravel": {
