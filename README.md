@@ -12,24 +12,12 @@ ACaptcha is a smart CAPTCHA solution designed to provide an easy and secure way 
 
 ## Installation
 
-1.  **Install ACaptcha** via Composer:# ACaptcha
-
-ACaptcha is a smart CAPTCHA solution designed to provide an easy and secure way to protect your web forms, similar to Google reCAPTCHA v2. Built with Laravel, ACaptcha is lightweight and user-friendly.
-
-## Features
-
--   **Smart CAPTCHA**: Advanced algorithms to distinguish between human users and bots.
--   **Easy Integration**: Simple to implement in your Laravel forms.
--   **Customizable**: Publish your own JavaScript, CSS, and images for masks and backgrounds.
-
-## Installation
-
 1.  **Install ACaptcha** via Composer:
 ```
 composer require angus-dv/acaptcha
 ```
 
-3. **Publish Assets**:
+2. **Publish Assets**:
 
 After installation, you need to publish the necessary JavaScript, CSS, and image assets:
 
