@@ -18,7 +18,7 @@ class CaptchaServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ACaptcha');
         $this->publishes([
             __DIR__.'/../resources' => public_path('vendor/acaptcha'),
-        ], 'angus-dv-assets');
+        ], 'acaptcha');
         $this->loadRoutesFrom(__DIR__ . '/captcha-routes.php');
         Validator::extend('a_captcha_verify', ACaptchaVerify::class);
 
