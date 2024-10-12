@@ -9,12 +9,10 @@ if (!function_exists('a_captcha_verify')) {
         $validator = Validator::make(['hashSalt' => $hashSalt], [
             'hashSalt' => 'required|string|regex:/^[a-f0-9]{64}:[a-zA-Z0-9]{15}$/'
         ]);
-
         // Check if validation fails
         if ($validator->fails()) {
             return false;
         }
-
         // Now we can safely explode the string
         [$hash, $salt] = explode(':', $hashSalt);
         if(!Cache::has('a-captcha-'.$salt)){
@@ -23,6 +21,8 @@ if (!function_exists('a_captcha_verify')) {
         if($hash!=hash('sha256',Cache::get('a-captcha-'.$salt))){
             return false;
         }
+        //for once usage
+        Cache::forget('a-captcha-'.$salt);
         return true;
     }
 }
