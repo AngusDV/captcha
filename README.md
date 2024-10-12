@@ -14,7 +14,7 @@ ACaptcha is a smart CAPTCHA solution designed to provide an easy and secure way 
 
 1.  **Install ACaptcha** via Composer:
 ```
-composer require angus-dv/acaptcha
+composer require angus-dv/captcha
 ```
 
 2. **Publish Assets**:
