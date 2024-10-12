@@ -20,8 +20,9 @@ class CaptchaServiceProvider extends ServiceProvider
             __DIR__.'/../resources' => public_path('vendor/acaptcha'),
         ], 'acaptcha');
         $this->loadRoutesFrom(__DIR__ . '/captcha-routes.php');
-        Validator::extend('a_captcha_verify', ACaptchaVerify::class);
-
+        Validator::extend('a_captcha_verify', function ($attribute, $value, $parameters, $validator) {
+            return (new ACaptchaVerify())->passes($attribute, $value);
+        });
     }
     /**
      * Register the application services.
