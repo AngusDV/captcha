@@ -3,7 +3,7 @@
     "description": "CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) is a security measure used to determine whether a user is a human or a bot. It helps prevent automated software from abusing online services, protecting websites from spam, fraud, and other malicious activities.",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "autoload": {
         "psr-4": {
             "AngusDV\\Captcha\\": "src/"

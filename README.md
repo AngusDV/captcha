@@ -50,6 +50,12 @@ To include the CAPTCHA in your form, simply use the following HTML code:
 You can verify the CAPTCHA on the backend using Laravel's validation rules. Use the `ACaptchaVerify` rule in your validation logic:
 ```
 $request->validate([ 
+	'a_captcha_hash_salt' => ['required', 'a_captcha_verify'],
+ ]);
+ 
+ or
+ 
+$request->validate([ 
 	'a_captcha_hash_salt' => ['required', new ACaptchaVerify],
  ]);
 ```

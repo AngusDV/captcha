@@ -2,7 +2,9 @@
 
 namespace AngusDV\Captcha;
 
+use AngusDV\Captcha\Rules\ACaptchaVerify;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class CaptchaServiceProvider extends ServiceProvider
@@ -18,6 +20,7 @@ class CaptchaServiceProvider extends ServiceProvider
             __DIR__.'/../resources' => public_path('vendor/acaptcha'),
         ], 'angus-dv-assets');
         $this->loadRoutesFrom(__DIR__ . '/captcha-routes.php');
+        Validator::extend('a_captcha_verify', ACaptchaVerify::class);
 
     }
     /**

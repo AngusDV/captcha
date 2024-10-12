@@ -38,10 +38,13 @@ class CaptchaController
 
     public function verify(VerifyRequest $request)
     {
+        $res = ['hash' => 0];
         $mask = $request->mask;
+        if(!Session::has('a-captcha')){
+            return response()->json($res);
+        }
         $dst = json_decode(Session::get('a-captcha'), true);
         $game=$dst["game"];
-        $res = ['hash' => 0];
         if ((new Drag)->verify($dst, $mask)) {
             $salt=Str::random(15);
             $randomStr=Str::random(32);
