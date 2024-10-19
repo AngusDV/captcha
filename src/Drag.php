@@ -52,46 +52,43 @@ class Drag
         $imgBG = imagecreatefrompng($bgPath);
         $imgDst = imagecreatetruecolor($this->bgWidth, $this->bgHeight);
         $imgMask = imagecreatefrompng($mask['img']);
+
         imagesavealpha($imgMask, true);
         imagesavealpha($imgDst, true);
-        imagecopyresized($imgDst, $imgBG, 0, 0, 0,0, 250, 160, imagesx($imgBG), imagesy($imgBG));
-        $imgMW= imagesx($imgMask);
-        $imgMH = imagesy($imgMask);
-        [$dstPosition, $maskPosition] = $this->getPosition();
-        for ($x = 0; $x < $imgMW; $x++) {
-            for ($y = 0; $y < $imgMH; $y++) {
-                $maskIndex = ImageColorAt($imgMask, $x, $y);
-                $maskRgb = imagecolorsforindex($imgMask, $maskIndex);
-                if ($maskRgb['alpha'] !== 127) {
-                    $tx = $dstPosition['left'] + $x;
-                    $ty = $dstPosition['top'] + $y;
-                    $tIndex = imagecolorat($imgDst, $tx, $ty);
-                    $tRgb = imagecolorsforindex($imgDst, $tIndex);
 
-                    $color = imagecolorallocate($imgMask, $tRgb['red'], $tRgb['green'], $tRgb['blue']);
-                    imagesetpixel($imgMask, $x, $y, $color);
+        imagecopyresized(
+            $imgDst,
+            $imgBG,
+            0,
+            0,
+            0,
+            0,
+            $this->bgWidth,
+            $this->bgHeight,
+            imagesx($imgBG),
+            imagesy($imgBG)
+        );
 
-                    $r = $tRgb['red'] * $maskRgb['red'] / 255;
-                    $g = $tRgb['green'] * $maskRgb['green'] / 255;
-                    $b = $tRgb['blue'] * $maskRgb['blue'] / 255;
-                    $tColor = imagecolorallocate($imgDst, (int)$r, (int)$g, (int)$b);
-                    imagesetpixel($imgDst, $tx, $ty, $tColor);
-                }
-            }
-        }
-        // make background image
+        $position = $this->getPosition();
+        $dstPosition = $position[0];
+        $maskPosition = $position[1];
+
+        $maker = new Maker(true);
+        $maker->swapPixels($dstPosition, $mask, $imgDst, $imgMask);
+
         ob_start();
         imagepng($imgDst);
         imagedestroy($imgDst);
         $bgData = ob_get_contents();
         ob_end_clean();
-        //make mask image
+
         ob_start();
         imagepng($imgMask);
         imagedestroy($imgMask);
         $maskData = ob_get_contents();
         ob_end_clean();
         imagedestroy($imgBG);
+
         return [
             $dstPosition,
             [

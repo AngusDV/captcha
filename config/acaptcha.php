@@ -17,6 +17,12 @@ return [
      */
     'mask_width_height'=>60,
     /*
+     * When the 'confuse' option is activated,
+     * it gracefully transforms the path of the masked image in the background,
+     * ensuring that the content remains undetectable by OCR.
+     */
+    'confuse'=>true,
+    /*
      * A smaller offset indicates higher accuracy, meaning the user has successfully
      * dragged the element to the intended target area
      */

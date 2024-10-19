@@ -21,7 +21,7 @@ class Resources
      * 200 * 160 px multiple
      */
     protected $bg ;
-
+    public $customBg = [];
     /**
      * @var string[][]
      *
@@ -91,7 +91,10 @@ class Resources
      */
     public function bg(): string
     {
-        return $this->bg[random_int(0, count($this->bg) - 1)];
+        if (!empty($this->customBg)) {
+            return Utils::randValue($this->customBg);
+        }
+        return Utils::randValue($this->bg);
     }
 
     /**
@@ -100,6 +103,23 @@ class Resources
      */
     public function mask(): array
     {
-        return $this->mask[random_int(0, count($this->mask) - 1)];
+
+        return Utils::randValue($this->mask);
+    }
+
+    /**
+     * @param string $img
+     * @return array
+     * @throws Exception
+     */
+    public  function uniqueMask($img)
+    {
+        $copyMask = [];
+        foreach ($this->mask as $item) {
+            if ($item['img'] !== $img) {
+                array_push($copyMask, $item);
+            }
+        }
+        return Utils::randValue($copyMask);
     }
 }
