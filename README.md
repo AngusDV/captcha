@@ -9,6 +9,7 @@ ACaptcha is a smart CAPTCHA solution designed to provide an easy and secure way 
 -   **Smart CAPTCHA**: Advanced algorithms to distinguish between human users and bots.
 -   **Easy Integration**: Simple to implement in your Laravel forms.
 -   **Customizable**: Publish your own JavaScript, CSS, and images for masks and backgrounds.
+-   **Confusable Design**: The masked images are crafted to be visually complex, making them difficult for OCR (Optical Character Recognition) systems to detect while remaining user-friendly for human interaction..
 
 ## Installation
 
