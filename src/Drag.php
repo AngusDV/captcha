@@ -144,7 +144,7 @@ class Drag
         return  false;
     }
     public function score(){
-        return rand (1,3);
+        return rand (config('acaptcha.game_random_show.min'),config('acaptcha.game_random_show.max'));
     }
 
     public function detectBot($request)

@@ -1,32 +1,43 @@
 <?php
 
 return [
-    'language'=>'en',
+    'language'=>env('ACAPTCHA_LANGUAGE','en'),
     /*
      * If this feature is enabled,
      * a rate limit is applied based on IP, allowing 2 requests per IP every 60 seconds.
      * Otherwise, a CAPTCHA code is displayed. Additionally, the user agent of the request is
      * checked to determine if it was sent by a bot.
      */
-    'robot_detection'=>false,
+    'robot_detection'=>env('ACAPTCHA_ROBOT_DETECTION',false),
 
-    'background_width'=>250,
-    'background_height'=>160,
+    /*
+     * You can enable a game ,
+     * allowing users to play while entering the CAPTCHA.
+     * This extends the time they spend interacting with the CAPTCHA,
+     * making the process more engaging.
+     */
+    'game'=>env('ACAPTCHA_GAME',true),
+    'game_random_show'=>[
+        "min"=>env('ACAPTCHA_GAME_RANDOM_MIN',1),
+        "max"=>env('ACAPTCHA_GAME_RANDOM_MAX',5)
+    ],
+    'background_width'=>env('ACAPTCHA_BACKGROUND_WIDTH',250),
+    'background_height'=>env('ACAPTCHA_BACKGROUND_HEIGHT',160),
     /*
      * mask_width_height=60*60 pixel
      */
-    'mask_width_height'=>60,
+    'mask_width_height'=>env('ACAPTCHA_MASK_WIDTH_HEIGHT',60),
     /*
      * When the 'confuse' option is activated,
      * it gracefully transforms the path of the masked image in the background,
      * ensuring that the content remains undetectable by OCR.
      */
-    'confuse'=>true,
+    'confuse'=>env('ACAPTCHA_ROBOT_CONFUSE',true),
     /*
      * A smaller offset indicates higher accuracy, meaning the user has successfully
      * dragged the element to the intended target area
      */
-    'offset'=>30,
+    'offset'=>env('ACAPTCHA_OFFSET',30),
 
     /*
      *  After publishing the assets, you can access them from the following path:
