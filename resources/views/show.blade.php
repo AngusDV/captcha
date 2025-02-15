@@ -98,7 +98,7 @@
 <div class="captcha-box {{$container}}" >
     <div class="captcha-checkbox">
         <input type="hidden" class="a_captcha_hash_salt" name="a_captcha_hash_salt" />
-        <input type="checkbox" class="aCaptchaShow" required />
+        <input type="checkbox" name="aCaptchaCheckbox" class="aCaptchaShow" required />
         <label for="aCaptchaShow">{{ __('ACaptcha::acaptcha.i_am_not_robot',[],config('acaptcha.language')) }}</label>
     </div>
 </div>
