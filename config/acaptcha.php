@@ -69,8 +69,6 @@ return [
             'viewBox' => 15.875,
         ]
     ],
-    'middlewares'=>env('ACAPTCHA_MIDDLEWARES',[
-        'web'
-    ])
+    'middlewares'=>['web']
 
 ];
